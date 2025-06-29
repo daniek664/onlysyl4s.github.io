@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0nlY syl4s - Moja Wizytówka LoL</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+
+    header img {
+      width: 150px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 3em;
+      color: #00ffff;
+    }
+
+    p {
+      max-width: 700px;
+      margin: 10px auto;
+      font-size: 1.2em;
+      color: #ddd;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .btn {
+      background: #00ffff;
+      color: #000;
+      text-decoration: none;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    /* Modal style */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background-color: #222;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #fff;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Falling icons */
+    .falling-icon {
+      position: fixed;
+      top: -50px;
+      width: 40px;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 10;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/ed/edc925ba0a0b0e0ef91b6f062c3e0bb29010b191_full.jpg" alt="Avatar" />
+    <h1>0nlY syl4s</h1>
+    <p>Cześć! Jestem mainem Sylasa w League of Legends od 2018 roku. Uwielbiam agresywny styl gry, szybkie outplaye i kontrolowanie tempa rozgrywki. Gram na serwerze EUNE i stale rozwijam swoje skille, szlifując zarówno mechanikę, jak i makro. Poza LoL-em kocham muzykę — mam własną playlistę na Spotify, która nakręca mnie przed rankedami.</p>
+  </header>
+
+  <div class="buttons">
+    <a href="#" class="btn" id="opggBtn">Zobacz mój profil LoL (OP.GG)</a>
+    <a href="#" class="btn" id="spotifyBtn">Posłuchaj mojej playlisty</a>
+  </div>
+
+  <!-- Modal OP.GG -->
+  <div id="opggModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeOpgg">&times;</span>
+      <iframe src="https://op.gg/lol/summoners/eune/0nlY%20syl4s-QNG4"></iframe>
+    </div>
+  </div>
+
+  <!-- Modal Spotify -->
+  <div id="spotifyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeSpotify">&times;</span>
+      <iframe src="https://open.spotify.com/embed/playlist/7uXqcNKryzsx8b3eNhK9kZ?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Falling icons
+    const icons = [
+      'https://cdn.jsdelivr.net/gh/RiotAPI-Icons/Champions/Sylas.png'
+    ];
+
+    setInterval(() => {
+      const img = document.createElement('img');
+      img.src = icons[Math.floor(Math.random() * icons.length)];
+      img.className = 'falling-icon';
+      img.style.left = Math.random() * window.innerWidth + 'px';
+      img.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 6000);
+    }, 500);
+
+    // Modal logic
+    const opggBtn = document.getElementById('opggBtn');
+    const spotifyBtn = document.getElementById('spotifyBtn');
+    const opggModal = document.getElementById('opggModal');
+    const spotifyModal = document.getElementById('spotifyModal');
+    const closeOpgg = document.getElementById('closeOpgg');
+    const closeSpotify = document.getElementById('closeSpotify');
+
+    opggBtn.onclick = () => opggModal.style.display = "block";
+    spotifyBtn.onclick = () => spotifyModal.style.display = "block";
+    closeOpgg.onclick = () => opggModal.style.display = "none";
+    closeSpotify.onclick = () => spotifyModal.style.display = "none";
+
+    window.onclick = function(event) {
+      if (event.target === opggModal) opggModal.style.display = "none";
+      if (event.target === spotifyModal) spotifyModal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
