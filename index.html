@@ -172,20 +172,20 @@
     }, 500);
 
     // Modal logic
-    const YouTubeBtn = document.getElementById('YouTubeBtn');
+    const opggBtn = document.getElementById('opggBtn');
     const spotifyBtn = document.getElementById('spotifyBtn');
-    const YouTubeModal = document.getElementById('YouTubeModal');
+    const opggModal = document.getElementById('opggModal');
     const spotifyModal = document.getElementById('spotifyModal');
-    const closeYouTube = document.getElementById('closeYouTube');
+    const closeOpgg = document.getElementById('closeOpgg');
     const closeSpotify = document.getElementById('closeSpotify');
 
-    YouTubeBtn.onclick = () => YouTubeModal.style.display = "block";
+    opggBtn.onclick = () => opggModal.style.display = "block";
     spotifyBtn.onclick = () => spotifyModal.style.display = "block";
-    closeYouTube.onclick = () => YouTubeModal.style.display = "none";
+    closeOpgg.onclick = () => opggModal.style.display = "none";
     closeSpotify.onclick = () => spotifyModal.style.display = "none";
 
     window.onclick = function(event) {
-      if (event.target === YouTubeModal) YouTubeModal.style.display = "none";
+      if (event.target === opggModal) opggModal.style.display = "none";
       if (event.target === spotifyModal) spotifyModal.style.display = "none";
     }
   </script>
