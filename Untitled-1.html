@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0nlY syl4s</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+
+    header img {
+      width: 150px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 3em;
+      color: rgb(255, 0, 0);
+    }
+
+    p {
+      max-width: 700px;
+      margin: 10px auto;
+      font-size: 1.2em;
+      color: #ddd;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .btn {
+      background: #ff0000;
+      color: #000;
+      text-decoration: none;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    /* Modal style */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background-color: #222;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #fff;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Falling icons */
+    .falling-icon {
+      position: fixed;
+      top: -50px;
+      width: 40px;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 10;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://preview.redd.it/prestige-masque-of-the-black-rose-katarina-border-icon-v0-y9d1e5jpr26e1.jpg?width=300&format=pjpg&auto=webp&s=a9f88711fbb8439526043d3aafa242f6ba2f95eb" alt="Avatar" />
+    <h1>0nlY syl4s</h1>
+    <p>Witam, jeśli już tutaj trafiłeś, chcę Ci podziękować, że interesujesz się moją osobą.</p>
+    <p>Parę informacji o mnie:</p>
+    <p>Nazywam się Daniel. Swoją przygodę z grą rozpocząłem w 2017 roku (przez pierwsze 2 lata grałem mało). Jestem mainem Sylasa w grze League of Legends. Nie należę do spokojnych osób grających w tę grę. Moje osiągnięcia związane z tą grą to między innymi top32 Sylas na serwerze EUNE, top 5% świata w obstawianiu meczy podczas dużego eventu „Worlds 2024”. Posiadam główne konto z poziomem 600 oraz 300+ skinów. Moja najwyższa ranga to Master low elo na serwerze West. Ponadto jestem studentem pierwszego roku logistyki. Mam 20 lat i od dłuższego czasu interesuję się komputerami oraz rzeczami związanymi z informatyką.</p>
+  </header>
+
+  <div class="buttons">
+    <a href="#" class="btn" id="opggBtn">Mój kanał YouTube</a>
+    <a href="#" class="btn" id="spotifyBtn">Moja playlista do nocnego grania</a>
+  </div>
+
+  <!-- Modal Spotify -->
+  <div id="spotifyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeSpotify">&times;</span>
+      <iframe src="https://open.spotify.com/embed/playlist/7uXqcNKryzsx8b3eNhK9kZ?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Falling icons
+    const icons = [
+      'https://i.pinimg.com/736x/de/f9/f3/def9f3702edf40d65315a839920987bf.jpg',
+      'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/assets/characters/sylas/skins/skin34/images/sylas_splash_tile_34.jpg'
+    ];
+
+    setInterval(() => {
+      const img = document.createElement('img');
+      img.src = icons[Math.floor(Math.random() * icons.length)];
+      img.className = 'falling-icon';
+      img.style.left = Math.random() * window.innerWidth + 'px';
+      img.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 6000);
+    }, 500);
+
+    // Button actions
+    const opggBtn = document.getElementById('opggBtn');
+    const spotifyBtn = document.getElementById('spotifyBtn');
+    const spotifyModal = document.getElementById('spotifyModal');
+    const closeSpotify = document.getElementById('closeSpotify');
+
+    opggBtn.onclick = () => window.open("https://youtube.com/@daniekkk7670", "_blank");
+    spotifyBtn.onclick = () => spotifyModal.style.display = "block";
+    closeSpotify.onclick = () => spotifyModal.style.display = "none";
+
+    window.onclick = function(event) {
+      if (event.target === spotifyModal) spotifyModal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
